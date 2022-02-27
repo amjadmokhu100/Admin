@@ -5,15 +5,44 @@ using System.Linq;
 using System.Web;
 using test3.Data;
 
+
+
 namespace test3.Models
 {
-    public class EmployeeModel
+ 
+    public partial class EmployeeModel
     {
+
         public int Id { get; set; }
-        public byte? Employeekind { get; set; }
+        public string Employeekind { get; set; }
         public string UserId { get; set; }
-        [Required]
+
         public virtual AspNetUser AspNetUser { get; set; }
 
+        [Required]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
+
+        [Required]
+        [Display(Name = "Roles")]
+        public string Roles { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
     }
+
 }

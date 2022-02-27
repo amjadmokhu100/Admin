@@ -1,123 +1,151 @@
-﻿using AutoMapper;
+﻿
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using test3;
 using test3.Data;
 using test3.Models;
-using test3.Services;
 
 namespace test3.Areas.Admin.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly EmployeeService employeeService;
-        private readonly IMapper mapper;
-
+        // GET: Employee
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+        private ApplicationDbContext db;
+        PaperHelpDbEntities db2 = new PaperHelpDbEntities();
         public EmployeeController()
         {
-            employeeService = new EmployeeService();
-            mapper = AutoMapperConfig.Mapper;
+            db = new ApplicationDbContext();
         }
-        // GET: Admin/Employee
+
         public ActionResult Index()
         {
-            return View();
-        }
+            List<EmployeeModel> EmployeeList = new List<EmployeeModel>();
+            //EmployeeLst = (from obj in db2.Employees
+            //               select obj).ToList();
 
-        // GET: Admin/Employee/Details/5
-        public ActionResult Details(int id)
+            foreach (var item in db2.AspNetUsers)
+            {
+                EmployeeModel employeeModel = new EmployeeModel() { 
+                UserId=item.Id, UserName=item.UserName,Email=item.Email
+                };
+                EmployeeList.Add(employeeModel);
+            }
+            return View(EmployeeList);
+        }
+      
+        public EmployeeController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
-            return View();
+
+
+            UserManager = userManager;
+            SignInManager = signInManager;
         }
 
-        // GET: Admin/Employee/Create
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Create()
         {
+            ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
             return View();
         }
 
-        // POST: Admin/Employee/Create
         [HttpPost]
-        public ActionResult Create(EmployeeModel employeeData)
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(EmployeeModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
                 {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                    var employeeDTO = mapper.Map<Employee>(employeeData);
-                    int result = employeeService.Create(employeeDTO);
-                    if (result >= 1)
-                    {
-                        return RedirectToAction("Index");
-
-                    }
-                    else if (result == -2)
-                    {
-
-                        ViewBag.Message = "An already exists employee with this email!";
-                    }
-                    else
-                    {
-
-                        ViewBag.Message = "An error occurred!";
-                    }
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    this.UserManager.AddToRole(user.Id, model.Roles);
+                    return RedirectToAction("Index", "Employee");
                 }
-                return View(employeeData);
+                ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
 
+                AddErrors(result);
             }
-            catch(Exception ex)
-            {
-                ViewBag.Message =ex.Message;
 
-                return View(employeeData);
-            }
+            // If we got this far, something failed, redisplay form
+            return View(model);
         }
 
-        // GET: Admin/Employee/Edit/5
-        public ActionResult Edit(int id)
+        private void AddErrors(IdentityResult result)
         {
-            return View();
+            throw new NotImplementedException();
         }
 
-        // POST: Admin/Employee/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        //[HttpPost]
+        //public ActionResult Create(Employee employee)
+        //{
+        //    db2.Employees.Add(employee);
+        //    db2.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        public ActionResult GetDetails(int id)
         {
-            try
-            {
-                // TODO: Add update logic here
+            Employee obj = db2.Employees.Find(id);
+            //obj = (from data in myDB.Employees
+            //       where data.EmployeeID == id
+            //       select data
+            //     ).FirstOrDefault();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View("Details", obj);
         }
 
-        // GET: Admin/Employee/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult DeleteEmployee(int id)
         {
-            return View();
+            Employee obj = db2.Employees.Find(id);
+            //obj = (from data in myDB.Employees
+            //       where data.EmployeeID == id
+            //       select data).FirstOrDefault();
+
+            db2.Employees.Remove(obj);
+            db2.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
-        // POST: Admin/Employee/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

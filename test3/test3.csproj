@@ -206,6 +206,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EmployeeDbModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -333,6 +334,8 @@
     <Content Include="Areas\Admin\Views\Service\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Edit2.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap5.js" />
     <Content Include="Scripts\dataTables.checkboxes.min.js" />

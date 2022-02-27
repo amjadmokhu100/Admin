@@ -1,0 +1,67 @@
+﻿@model List<test3.Models.EmployeeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item">Main</li>
+                        <li class="breadcrumb-item active">Employees</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Employees</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <a href="@Url.Action("Create", "Employee")" class="btn btn-danger">add employee</a>
+
+                    <div class="table-responsive">
+                        <table class="table table-centered table-striped dt-responsive nowrap w-100" id="products-datatable">
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>User Name</th>
+                                    <th>Employee Kind</th>
+                                    @*<th>User ID</th>*@
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var employee in Model)
+                                {
+                                <tr>
+                                    <td valign="middle" data-header-title="EmployeeID"><span>@employee.Id</span></td>
+                                    <td valign="middle" data-header-title="EmployeeKind">@employee.UserName</td>
+                                    <td valign="middle" data-header-title="EmployeeKind">@employee.Employeekind</td>
+                                    <td valign="middle" data-header-title="EmployeeEmail">@employee.Email</td>
+
+                                    @*<td valign="middle" data-header-title="UserID">@employee.UserId</td>*@
+
+                                    @*<td>@Html.ActionLink("Delete", "DeleteEmployee", new { id = employee.Id })</td>*@
+
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                </div>
+                
+            </div> 
+        </div>  
+    </div>
+
+</div>  
