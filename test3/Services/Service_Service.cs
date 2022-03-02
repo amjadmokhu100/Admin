@@ -6,13 +6,17 @@ using test3.Data;
 
 namespace test3.Services
 {
+
     public interface IService_Service
     {
-        bool Delete(int id);
-        int Update(Service updatedService);
-        Service ReadById(int id);
-        List<Service> ReadAll();
         int Create(Service newService);
+        bool Delete(int id);
+
+        List<Service> ReadAll();
+        Service Get(int Id);
+                Service ReadById(int id);
+
+        int Update(Service updatedService);
     }
     public class Service_Service : IService_Service
 
@@ -27,7 +31,7 @@ namespace test3.Services
         public int Create(Service newService)
         {
             var serviceName = newService.Name.ToLower();
-           var serviceNameExists =  db.Services.Where(c => c.Name.ToLower() == serviceName).Any();
+            var serviceNameExists = db.Services.Where(c => c.Name.ToLower() == serviceName).Any();
             if (serviceNameExists)
             {
                 return -2;
@@ -39,7 +43,7 @@ namespace test3.Services
         public bool Delete(int id)
         {
             var service = ReadById(id);
-            if(service != null)
+            if (service != null)
             {
                 db.Services.Remove(service);
                 return db.SaveChanges() > 0 ? true : false;
@@ -47,27 +51,26 @@ namespace test3.Services
             return false;
         }
 
-        public List<Service> ReadAll()
-        {
-          return  db.Services.ToList();
-        }
-
         public Service ReadById(int id)
         {
             return db.Services.Find(id);
         }
 
+        public Service Get(int Id)
+        {
+            return db.Services.Find(Id);
+        }
+
+        public List<Service> ReadAll()
+        {
+            return db.Services.ToList();      
+        }
+
         public int Update(Service updatedService)
         {
-            var serviceName = updatedService.Name.ToLower();
-            var serviceNameExists = db.Services.Where(c => c.Name.ToLower() == serviceName).Any();
-            if (serviceNameExists)
-            {
-                return -2;
-            }
             db.Services.Attach(updatedService);
             db.Entry(updatedService).State = System.Data.Entity.EntityState.Modified;
-          return  db.SaveChanges();
+            return db.SaveChanges();
         }
     }
 }

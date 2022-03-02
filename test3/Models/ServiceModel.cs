@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ using test3.Data;
 namespace test3.Models
 {
     public class ServiceModel
+
     {
         public int Id { get; set; }
         [Required (ErrorMessage = "Service name is required!")]
@@ -18,7 +20,10 @@ namespace test3.Models
         public int? NormalHour { get; set; }
         public double? FastPrice { get; set; }
         public int? FastHour { get; set; }
+
         public string Photo { get; set; }
+        [Required]
+        public HttpPostedFileBase ImageFile { get; set; }
         public bool? Sale { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
 

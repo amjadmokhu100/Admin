@@ -33,8 +33,10 @@ namespace test3.Areas.Admin.Controllers
 
             foreach (var item in db2.AspNetUsers)
             {
-                EmployeeModel employeeModel = new EmployeeModel() { 
-                UserId=item.Id, UserName=item.UserName,Email=item.Email
+                EmployeeModel employeeModel = new EmployeeModel() {
+                    UserId = item.Id, UserName = item.UserName, Email = item.Email, Employeekind = item.Employees.First().Employeekind
+
+
                 };
                 EmployeeList.Add(employeeModel);
             }
@@ -76,7 +78,7 @@ namespace test3.Areas.Admin.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
-            ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
+            ViewBag.Roles = new SelectList(db.Roles.Where(a=>!a.Name.Contains("Admins")).ToList(), "Name", "Name");
             return View();
         }
 
@@ -99,21 +101,37 @@ namespace test3.Areas.Admin.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     this.UserManager.AddToRole(user.Id, model.Roles);
+                    byte epKind;
+                    if (model.Roles == "Writer")
+                    {
+                        epKind = (byte)EmployeeKind.writer;
+                    }
+                    else
+                    {
+                        epKind = (byte)EmployeeKind.profreader;
+
+
+                    }
+                    var employee = new Employee { Employeekind = epKind, UserId = user.Id};
+                    db2.Employees.Add(employee);
+                    db2.SaveChanges();
+                   
                     return RedirectToAction("Index", "Employee");
                 }
                 ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
 
-                AddErrors(result);
+                //AddErrors(result);
+                ModelState.AddModelError("error1", result.Errors.First().ToString());
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        private void AddErrors(IdentityResult result)
-        {
-            throw new NotImplementedException();
-        }
+        //private void AddErrors(IdentityResult result)
+        //{
+        //    throw new NotImplementeredException();
+        //}
 
         //[HttpPost]
         //public ActionResult Create(Employee employee)
@@ -123,29 +141,28 @@ namespace test3.Areas.Admin.Controllers
         //    return RedirectToAction("Index");
         //}
 
-        public ActionResult GetDetails(int id)
-        {
-            Employee obj = db2.Employees.Find(id);
-            //obj = (from data in myDB.Employees
-            //       where data.EmployeeID == id
-            //       select data
-            //     ).FirstOrDefault();
+        //public ActionResult GetDetails(int id)
+        //{
+        //    Employee obj = db2.Employees.Find(id);
+        //obj = (from data in myDB.Employees
+        //       where data.EmployeeID == id
+        //       select data
+        //     ).FirstOrDefault();
 
-            return View("Details", obj);
-        }
+        //    return View("Details", obj);
+        //}
 
-        public ActionResult DeleteEmployee(int id)
-        {
-            Employee obj = db2.Employees.Find(id);
-            //obj = (from data in myDB.Employees
-            //       where data.EmployeeID == id
-            //       select data).FirstOrDefault();
+        //public ActionResult DeleteEmployee(int id)
+        //{
+        //    Employee obj = db2.Employees.Find(id);
+        //obj = (from data in myDB.Employees
+        //       where data.EmployeeID == id
+        //       select data).FirstOrDefault();
 
-            db2.Employees.Remove(obj);
-            db2.SaveChanges();
+        //db2.Employees.Remove(obj);
+        //db2.SaveChanges();
 
-            return RedirectToAction("Index");
-        }
+        //return RedirectToAction("Index");
+    }
 
     }
-}

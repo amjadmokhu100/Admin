@@ -1,6 +1,8 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,160 +14,165 @@ namespace test3.Areas.Admin.Controllers
 {
     public class ServiceController : Controller
     {
-        private readonly Service_Service service_Service;
         private readonly IMapper mapper;
-       PaperHelpDbEntities db = new PaperHelpDbEntities();
-
+        private readonly Service_Service service_Service;
         public ServiceController()
         {
-            service_Service = new Service_Service();
             mapper = AutoMapperConfig.Mapper;
+            service_Service = new Service_Service();
         }
-
-        // GET: Admin/Service
         public ActionResult Index()
         {
-            var services = service_Service.ReadAll();
-            var serviceList = mapper.Map<List<ServiceModel>>(services);
-            //foreach(var item in services)
-            //{
-            //    serviceList.Add(new ServiceModel
-            //    {
-            //        Id = item.Id,
-            //        Name = item.Name,
-            //        Description = item.Description,
-            //        NormalPrice = item.NormalPrice,
-            //        NormalHour = item.NormalHour,
-            //        FastPrice = item.FastPrice,
-            //        FastHour = item.FastHour,
-            //        Photo = item.Photo 
-            //    }) ;
-            //}
-            // return View(db.Services.ToList());
-            return View(serviceList);
+            var serviceList = service_Service.ReadAll();
+            var mappedServiceList = mapper.Map<List<ServiceModel>>(serviceList);
+            return View(mappedServiceList);
+
         }
+
+
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            var serviceModel = new ServiceModel();
+            return View(serviceModel);
+
         }
+
+
         [HttpPost]
         public ActionResult Create(ServiceModel data)
         {
-            if (ModelState.IsValid)
-            {
-                //db.Services.Add(service);
-                //db.SaveChanges();
 
-               var newService= mapper.Map<Service>(data);
-                int creationResult = service_Service.Create(newService);
-          
-                if(creationResult == -2)
+            //if (data.ImageFile == null || data.ImageFile.ContentLength == 0)
+            //    return View(data);
+
+            try
+            {
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Message = "Service Name is exists";
-                    return View(data);
+
+                    data.Photo = SaveImageFile(data.ImageFile);
+                    var serviceDTO = mapper.Map<Service>(data);
+                    int result = service_Service.Create(serviceDTO);
+                    if(result >= 1)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ViewBag.Message = "An error occurred!";
                 }
-           
-                    return RedirectToAction("Index");
+                return View(data);
 
-              
             }
-            return View();
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                return View(data);
+            }
 
-          
         }
+
+
+
+
+
+
+
+
+
         [HttpGet]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? Id)
         {
-            if (id == null || id==0)
-            {
-                return RedirectToAction("index", "Home");
-            }
+            if (Id == null)
+                return HttpNotFound();
 
-            var currentService = service_Service.ReadById(id.Value);
-            if(currentService == null)
-            {
-                return HttpNotFound($"This service ({id}) not found");
-            }
-            var serviceModel = mapper.Map<ServiceModel>(currentService);
-
-            //{
-            //    Id = currentService.Id,
-            //    Name = currentService.Name,
-            //    Description = currentService.Description,
-            //    NormalPrice = currentService.NormalPrice,
-            //    NormalHour = currentService.NormalHour,
-            //    FastPrice = currentService.FastPrice,
-            //    FastHour = currentService.FastHour,
-            //    Photo = currentService.Photo,
-            //    Sale = currentService.Sale
-            //};
+            var currentServiceData = service_Service.Get(Id.Value);
+            var serviceModel = mapper.Map<ServiceModel>(currentServiceData);
             return View(serviceModel);
+
         }
+
+
         [HttpPost]
         public ActionResult Edit(ServiceModel data)
         {
-            if (ModelState.IsValid)
-            {
-                var updatedService = mapper.Map<Service>(data);
-                //{
-                //    Id = data.Id,
-                //    Name = data.Name,
-                //    Description = data.Description,
-                //    NormalPrice = data.NormalPrice,
-                //    NormalHour = data.NormalHour,
-                //    FastPrice = data.FastPrice,
-                //    FastHour = data.FastHour,
-                //    Photo = data.Photo
-                //};
-             var result = service_Service.Update(updatedService);
 
-                if (result == -2)
+            try
+            {
+                if (ModelState.IsValid)
                 {
-                    ViewBag.Message = "Service Name is exists";
-                    return View(data);
+                    data.Photo = SaveImageFile(data.ImageFile, data.Photo);
+
+                    var service= mapper.Map<Service>(data);
+                     int result = service_Service.Update(service);
+                    if (result >= 1)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    ViewBag.Message = "An error occurred!";
                 }
-                else if (result > 0)
-                {
-                    ViewBag.Success = true;
-                    ViewBag.Message = $"Service ({data.Id}) updated successfully.";
-                }
-                else
-                {
-                    ViewBag.Message = $"An error occured!";
-                }
+                return View(data);
+
             }
-            return View(data);
+            catch (Exception ex)
+            {
+                ViewBag.Message = ex.Message;
+                return View(data);
+            }
+
         }
 
-        
+        private string SaveImageFile(HttpPostedFileBase ImageFile, string currentPhoto="")
+        {
+           
+            if (ImageFile != null)
+            {
+
+                //save new file
+                var fileExtension = Path.GetExtension(ImageFile.FileName);
+                var photoGuid = Guid.NewGuid().ToString();
+                string Photo = photoGuid + fileExtension;
+                // save file in upload / services file
+                string filePath = Server.MapPath($"~/Upload/Services/{Photo}");
+
+
+                ImageFile.SaveAs(filePath);
+
+
+                //delete old file - update action
+
+                if (!string.IsNullOrEmpty(currentPhoto))
+                {
+                    string oldFilePath = Server.MapPath($"~/Upload/Services/{currentPhoto}");
+                    System.IO.File.Delete(oldFilePath);
+                }
+
+                return Photo;
+            }
+            return currentPhoto;
+
+        }
+
+
+
         public ActionResult Delete(int? Id)
         {
-            if (Id !=null)
+            if (Id != null)
             {
                 var service = service_Service.ReadById(Id.Value);
                 var serviceInfo = mapper.Map<ServiceModel>(service);
-                //{
-                //    Id = service.Id,
-                //    Name = service.Name,
-                //    Description = service.Description,
-                //    NormalPrice = service.NormalPrice,
-                //    NormalHour = service.NormalHour,
-                //    FastPrice = service.FastPrice,
-                //    FastHour = service.FastHour,
-                //    Photo = service.Photo
-                //};
+
                 return View(serviceInfo);
             }
             return RedirectToAction("Index");
         }
 
+
         [HttpPost]
         public ActionResult DeleteConfirmed(int? Id)
         {
-            if(Id != null)
+            if (Id != null)
             {
-               var deleted = service_Service.Delete(Id.Value);
+                var deleted = service_Service.Delete(Id.Value);
                 if (deleted)
                 {
                     return RedirectToAction("Index");
@@ -174,5 +181,7 @@ namespace test3.Areas.Admin.Controllers
             }
             return HttpNotFound();
         }
+
     }
+
 }

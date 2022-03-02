@@ -14,7 +14,7 @@ namespace test3.Models
     {
 
         public int Id { get; set; }
-        public string Employeekind { get; set; }
+        public byte? Employeekind { get; set; }
         public string UserId { get; set; }
 
         public virtual AspNetUser AspNetUser { get; set; }

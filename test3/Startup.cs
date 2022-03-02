@@ -25,7 +25,7 @@ namespace test3
             var check = userManager.Create(user, "Aa@123456789");
             if (check.Succeeded)
             {
-                userManager.AddToRole(user.Id, "Admin");
+                userManager.AddToRole(user.Id, "Admins");
             }
         }
 
