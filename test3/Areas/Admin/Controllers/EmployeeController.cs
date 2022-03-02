@@ -35,7 +35,7 @@ namespace test3.Areas.Admin.Controllers
             {
                 EmployeeModel employeeModel = new EmployeeModel() {
                     UserId = item.Id, UserName = item.UserName, Email = item.Email, Employeekind = item.Employees.First().Employeekind
-
+                    ////Id = item.Id
 
                 };
                 EmployeeList.Add(employeeModel);
@@ -106,12 +106,18 @@ namespace test3.Areas.Admin.Controllers
                     {
                         epKind = (byte)EmployeeKind.writer;
                     }
-                    else
+                    else if (model.Roles == "Profreader")
                     {
-                        epKind = (byte)EmployeeKind.profreader;
+                        epKind = (byte)EmployeeKind.Profreader;
 
 
                     }
+                    else
+                    {
+                        epKind = (byte)EmployeeKind.Admins;
+
+                    }
+
                     var employee = new Employee { Employeekind = epKind, UserId = user.Id};
                     db2.Employees.Add(employee);
                     db2.SaveChanges();

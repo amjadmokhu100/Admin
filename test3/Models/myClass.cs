@@ -8,7 +8,9 @@ namespace test3.Models
     public enum EmployeeKind
     {
         writer= 1,
-        profreader=2
+        Profreader= 2,
+        Admins = 3
+
 
     }
 }
