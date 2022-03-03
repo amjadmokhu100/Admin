@@ -182,6 +182,20 @@ namespace test3.Areas.Admin.Controllers
             return HttpNotFound();
         }
 
+        public ActionResult Details(int? Id)
+        {
+
+            if (Id != null)
+            {
+                var service = service_Service.ReadById(Id.Value);
+                var serviceInfo = mapper.Map<ServiceModel>(service);
+
+                return View(serviceInfo);
+            }
+            return RedirectToAction("Index");
+        }
+
+
     }
 
 }
