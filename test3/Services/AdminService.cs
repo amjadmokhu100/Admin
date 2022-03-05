@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using test3.Data;
+using test3.Models;
 
 namespace test3.Services
 {
@@ -14,11 +14,11 @@ namespace test3.Services
     }
     public class AdminService : IAdminService
     {
-        public PaperHelpDbEntities context { get; set; }
+        public ApplicationDbContext context { get; set; }
 
         public AdminService()
         {
-            context = new PaperHelpDbEntities();
+            context = new ApplicationDbContext();
         }
 
         public bool ChangePassword(string Email, string Password)

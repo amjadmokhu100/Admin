@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using test3;
-using test3.Data;
 using test3.Models;
 
 namespace test3.Areas.Admin.Controllers
@@ -19,7 +18,7 @@ namespace test3.Areas.Admin.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db;
-        PaperHelpDbEntities db2 = new PaperHelpDbEntities();
+        ApplicationDbContext db2 = new ApplicationDbContext();
         public EmployeeController()
         {
             db = new ApplicationDbContext();
@@ -120,6 +119,8 @@ namespace test3.Areas.Admin.Controllers
 
                     var employee = new Employee { Employeekind = epKind, UserId = user.Id};
                     db2.Employees.Add(employee);
+                    
+                    
                     db2.SaveChanges();
                    
                     return RedirectToAction("Index", "Employee");

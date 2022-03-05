@@ -176,64 +176,55 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ServiceController - Copy %282%29.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
-    <Compile Include="Data\AspNetRole.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\AspNetUser.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\AspNetUserClaim.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\AspNetUserLogin.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\AssFile.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Data\C__MigrationHistory.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Employee.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202203030929564_AddUserIdentityToDb.cs" />
+    <Compile Include="Migrations\202203030929564_AddUserIdentityToDb.Designer.cs">
+      <DependentUpon>202203030929564_AddUserIdentityToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203030935297_AddEmployeeToDb.cs" />
+    <Compile Include="Migrations\202203030935297_AddEmployeeToDb.Designer.cs">
+      <DependentUpon>202203030935297_AddEmployeeToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203030943327_AddColumnUserIdToEmployees.cs" />
+    <Compile Include="Migrations\202203030943327_AddColumnUserIdToEmployees.Designer.cs">
+      <DependentUpon>202203030943327_AddColumnUserIdToEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203030948189_AddTable.cs" />
+    <Compile Include="Migrations\202203030948189_AddTable.Designer.cs">
+      <DependentUpon>202203030948189_AddTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203030950171_AddTableOrderToDb.cs" />
+    <Compile Include="Migrations\202203030950171_AddTableOrderToDb.Designer.cs">
+      <DependentUpon>202203030950171_AddTableOrderToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203031008222_AddTableAssFileToDb.cs" />
+    <Compile Include="Migrations\202203031008222_AddTableAssFileToDb.Designer.cs">
+      <DependentUpon>202203031008222_AddTableAssFileToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203051645289_addTestToDb.cs" />
+    <Compile Include="Migrations\202203051645289_addTestToDb.Designer.cs">
+      <DependentUpon>202203051645289_addTestToDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AssFile.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Data\Order.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\PaperHelpModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PaperHelpModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\PaperHelpModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\PaperHelpModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PaperHelpModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\myClass.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ServiceModel.cs" />
+    <Compile Include="Models\TestClassM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Data\Service.cs">
-      <DependentUpon>PaperHelpModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Services\Service_Service.cs" />
@@ -275,16 +266,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\avatar-1.jpg" />
     <Content Include="Images\us.jpg" />
-    <Content Include="Data\PaperHelpModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PaperHelpModel.edmx</DependentUpon>
-      <LastGenOutput>PaperHelpModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Data\PaperHelpModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PaperHelpModel.edmx</DependentUpon>
-      <LastGenOutput>PaperHelpModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\app.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -321,13 +302,6 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Default\Index.cshtml" />
-    <EntityDeploy Include="Data\PaperHelpModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PaperHelpModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Data\PaperHelpModel.edmx.diagram">
-      <DependentUpon>PaperHelpModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\Service\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Delete.cshtml" />
@@ -394,6 +368,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Data\" />
     <Folder Include="Upload\Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -411,6 +386,29 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202203030929564_AddUserIdentityToDb.resx">
+      <DependentUpon>202203030929564_AddUserIdentityToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203030935297_AddEmployeeToDb.resx">
+      <DependentUpon>202203030935297_AddEmployeeToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203030943327_AddColumnUserIdToEmployees.resx">
+      <DependentUpon>202203030943327_AddColumnUserIdToEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203030948189_AddTable.resx">
+      <DependentUpon>202203030948189_AddTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203030950171_AddTableOrderToDb.resx">
+      <DependentUpon>202203030950171_AddTableOrderToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203031008222_AddTableAssFileToDb.resx">
+      <DependentUpon>202203031008222_AddTableAssFileToDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203051645289_addTestToDb.resx">
+      <DependentUpon>202203051645289_addTestToDb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

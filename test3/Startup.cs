@@ -4,7 +4,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using test3.Models;
 using System;
-using test3.Data;
 using System.Linq;
 
 [assembly: OwinStartupAttribute(typeof(test3.Startup))]

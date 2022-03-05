@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using test3.Data;
+using test3.Models;
 
 namespace test3.Services
 {
@@ -22,10 +22,10 @@ namespace test3.Services
 
     {
 
-        private readonly PaperHelpDbEntities db;
+        private readonly ApplicationDbContext db;
         public Service_Service()
         {
-            db = new PaperHelpDbEntities();
+            db = new ApplicationDbContext();
         }
 
         public int Create(Service newService)

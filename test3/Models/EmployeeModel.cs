@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
-using test3.Data;
 
 
 
 namespace test3.Models
 {
- 
+
     public partial class EmployeeModel
     {
         [Key]
@@ -20,7 +19,7 @@ namespace test3.Models
         //[ForeignKey("UserId")]
         public string UserId { get; set; }
         //public virtual ApplicationUser ApplicationUser { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
+        ////public virtual AspNetUser AspNetUser { get; set; }
 
         [Required]
         [Display(Name = "User Name")]

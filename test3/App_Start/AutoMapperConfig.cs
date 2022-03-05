@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using test3.Data;
 using test3.Models;
 
 namespace test3
