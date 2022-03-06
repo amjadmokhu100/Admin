@@ -18,7 +18,7 @@ namespace test3.Areas.Admin.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationDbContext db;
-        ApplicationDbContext db2 = new ApplicationDbContext();
+        //ApplicationDbContext db2 = new ApplicationDbContext();
         public EmployeeController()
         {
             db = new ApplicationDbContext();
@@ -30,10 +30,12 @@ namespace test3.Areas.Admin.Controllers
             //EmployeeLst = (from obj in db2.Employees
             //               select obj).ToList();
 
-            foreach (var item in db2.AspNetUsers)
+            foreach (var item in db.Users)
             {
                 EmployeeModel employeeModel = new EmployeeModel() {
-                    UserId = item.Id, UserName = item.UserName, Email = item.Email, Employeekind = item.Employees.First().Employeekind
+                    UsersId = item.Id, UserName = item.UserName, Email = item.Email,
+                    Employeekind = db.Employees.First(x=>x.UsersId == item.Id).Employeekind
+                    //Employeekind = item.Employees.First().Employeekind
                     ////Id = item.Id
 
                 };
@@ -117,11 +119,11 @@ namespace test3.Areas.Admin.Controllers
 
                     }
 
-                    var employee = new Employee { Employeekind = epKind, UserId = user.Id};
-                    db2.Employees.Add(employee);
+                    var employee = new Employee { Employeekind = epKind, UsersId = user.Id};
+                    db.Employees.Add(employee);
                     
                     
-                    db2.SaveChanges();
+                    db.SaveChanges();
                    
                     return RedirectToAction("Index", "Employee");
                 }

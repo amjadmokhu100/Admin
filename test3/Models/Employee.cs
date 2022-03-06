@@ -9,7 +9,8 @@ namespace test3.Models
     {
         public int Id { get; set; }
         public Nullable<byte> Employeekind { get; set; }
-        public string UserId { get; set; }
+        public string UsersId { get; set; }
+        public ApplicationUser Users { get; set; }
 
     }
 }

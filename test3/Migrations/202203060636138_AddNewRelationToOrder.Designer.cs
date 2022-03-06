@@ -7,13 +7,13 @@ namespace test3.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class addTestToDb : IMigrationMetadata
+    public sealed partial class AddNewRelationToOrder : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addTestToDb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddNewRelationToOrder));
         
         string IMigrationMetadata.Id
         {
-            get { return "202203051645289_addTestToDb"; }
+            get { return "202203060636138_AddNewRelationToOrder"; }
         }
         
         string IMigrationMetadata.Source

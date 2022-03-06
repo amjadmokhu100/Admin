@@ -9,6 +9,7 @@ namespace test3.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public bool IsActive { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -21,11 +22,9 @@ namespace test3.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Service> Services { get; set; }
-        public DbSet<AssFile> AssFiles { get; set; }
-        public DbSet<TestClassM> TestClassMs { get; set; }
-
+        public DbSet<Order>  Orders { get; set; }
+        public DbSet<Service>  Services { get; set; }
+        public DbSet<AssFile> AssFiles  { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

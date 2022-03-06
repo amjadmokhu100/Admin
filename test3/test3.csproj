@@ -208,9 +208,21 @@
     <Compile Include="Migrations\202203031008222_AddTableAssFileToDb.Designer.cs">
       <DependentUpon>202203031008222_AddTableAssFileToDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202203051645289_addTestToDb.cs" />
-    <Compile Include="Migrations\202203051645289_addTestToDb.Designer.cs">
-      <DependentUpon>202203051645289_addTestToDb.cs</DependentUpon>
+    <Compile Include="Migrations\202203060622572_addColumnToDB.cs" />
+    <Compile Include="Migrations\202203060622572_addColumnToDB.Designer.cs">
+      <DependentUpon>202203060622572_addColumnToDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203060627417_AddRelationToEmployee.cs" />
+    <Compile Include="Migrations\202203060627417_AddRelationToEmployee.Designer.cs">
+      <DependentUpon>202203060627417_AddRelationToEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203060629479_AddRelationToOrder.cs" />
+    <Compile Include="Migrations\202203060629479_AddRelationToOrder.Designer.cs">
+      <DependentUpon>202203060629479_AddRelationToOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202203060636138_AddNewRelationToOrder.cs" />
+    <Compile Include="Migrations\202203060636138_AddNewRelationToOrder.Designer.cs">
+      <DependentUpon>202203060636138_AddNewRelationToOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -368,7 +380,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Data\" />
     <Folder Include="Upload\Services\" />
   </ItemGroup>
   <ItemGroup>
@@ -406,8 +417,17 @@
     <EmbeddedResource Include="Migrations\202203031008222_AddTableAssFileToDb.resx">
       <DependentUpon>202203031008222_AddTableAssFileToDb.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202203051645289_addTestToDb.resx">
-      <DependentUpon>202203051645289_addTestToDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202203060622572_addColumnToDB.resx">
+      <DependentUpon>202203060622572_addColumnToDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203060627417_AddRelationToEmployee.resx">
+      <DependentUpon>202203060627417_AddRelationToEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203060629479_AddRelationToOrder.resx">
+      <DependentUpon>202203060629479_AddRelationToOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202203060636138_AddNewRelationToOrder.resx">
+      <DependentUpon>202203060636138_AddNewRelationToOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
