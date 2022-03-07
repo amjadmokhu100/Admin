@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -13,15 +14,18 @@ using test3.Models;
 namespace test3.Areas.Admin.Controllers
 {
     public class EmployeeController : Controller
+
     {
+        public UserManager<ApplicationUser> MyUserManager { get; set; }
         // GET: Employee
         private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        private ApplicationDbContext db;
+        private ApplicationUserManager _userManager { get; set; }
+        private ApplicationDbContext db { get; set; }
         //ApplicationDbContext db2 = new ApplicationDbContext();
         public EmployeeController()
         {
             db = new ApplicationDbContext();
+            MyUserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
 
         public ActionResult Index()
@@ -29,21 +33,36 @@ namespace test3.Areas.Admin.Controllers
             List<EmployeeModel> EmployeeList = new List<EmployeeModel>();
             //EmployeeLst = (from obj in db2.Employees
             //               select obj).ToList();
-
-            foreach (var item in db.Users)
+            var MyUsers_Roles = db.Roles.Where(x => x.Name == "Writer" || x.Name == "Profreader").SelectMany(x => x.Users).ToList();
+            List<ApplicationUser> myUsers = new List<ApplicationUser>();
+            foreach (var item in MyUsers_Roles)
             {
-                EmployeeModel employeeModel = new EmployeeModel() {
-                    UsersId = item.Id, UserName = item.UserName, Email = item.Email,
-                    Employeekind = db.Employees.First(x=>x.UsersId == item.Id).Employeekind
+                var theUser = MyUserManager.FindById(item.UserId);
+                myUsers.Add(theUser);
+            }
+
+            foreach (var item in myUsers)
+            {
+                EmployeeModel employeeModel = new EmployeeModel()
+                {
+                    UsersId = item.Id,
+                    UserName = item.UserName,
+                    Email = item.Email,
+                    Employeekind = db.Employees.First(x => x.UsersId == item.Id).Employeekind
                     //Employeekind = item.Employees.First().Employeekind
                     ////Id = item.Id
 
                 };
+
+                //    byte empkind;
+                //    var userRole= MyUserManager.getr
+
                 EmployeeList.Add(employeeModel);
             }
             return View(EmployeeList);
         }
-      
+
+
         public EmployeeController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
 
@@ -79,7 +98,7 @@ namespace test3.Areas.Admin.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
-            ViewBag.Roles = new SelectList(db.Roles.Where(a=>!a.Name.Contains("Admins")).ToList(), "Name", "Name");
+            ViewBag.Roles = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admins")).ToList(), "Name", "Name");
             return View();
         }
 
@@ -119,12 +138,12 @@ namespace test3.Areas.Admin.Controllers
 
                     }
 
-                    var employee = new Employee { Employeekind = epKind, UsersId = user.Id};
+                    var employee = new Employee { Employeekind = epKind, UsersId = user.Id };
                     db.Employees.Add(employee);
-                    
-                    
+
+
                     db.SaveChanges();
-                   
+
                     return RedirectToAction("Index", "Employee");
                 }
                 ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
@@ -142,13 +161,7 @@ namespace test3.Areas.Admin.Controllers
         //    throw new NotImplementeredException();
         //}
 
-        //[HttpPost]
-        //public ActionResult Create(Employee employee)
-        //{
-        //    db2.Employees.Add(employee);
-        //    db2.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+
 
         //public ActionResult GetDetails(int id)
         //{
@@ -163,15 +176,16 @@ namespace test3.Areas.Admin.Controllers
 
         //public ActionResult DeleteEmployee(int id)
         //{
-        //    Employee obj = db2.Employees.Find(id);
-        //obj = (from data in myDB.Employees
-        //       where data.EmployeeID == id
-        //       select data).FirstOrDefault();
+            //    Employee obj = db2.Employees.Find(id);
+            //obj = (from data in myDB.Employees
+            //       where data.EmployeeID == id
+            //       select data).FirstOrDefault();
 
-        //db2.Employees.Remove(obj);
-        //db2.SaveChanges();
+        //    db.Employees.Remove();
+        //    db.SaveChanges();
 
-        //return RedirectToAction("Index");
+        //    return RedirectToAction("Index");
+        //}
+
     }
-
-    }
+}

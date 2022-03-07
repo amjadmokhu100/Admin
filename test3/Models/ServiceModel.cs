@@ -10,6 +10,7 @@ namespace test3.Models
     public class ServiceModel
 
     {
+
         public int Id { get; set; }
         [Required(ErrorMessage = "Service name is required!")]
         [StringLength(200, MinimumLength = 10, ErrorMessage = "Service name is should be 10 to 200!")]
@@ -21,6 +22,7 @@ namespace test3.Models
         public int? FastHour { get; set; }
 
         public string Photo { get; set; }
+
         [Required]
         public HttpPostedFileBase ImageFile { get; set; }
         public bool? Sale { get; set; }

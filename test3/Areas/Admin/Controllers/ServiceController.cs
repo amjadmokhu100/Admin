@@ -99,7 +99,7 @@ namespace test3.Areas.Admin.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    data.Photo = SaveImageFile(data.ImageFile, data.Photo);
+                    data.Photo = SaveImageFile(data.ImageFile);
 
                     var service= mapper.Map<Service>(data);
                      int result = service_Service.Update(service);
@@ -122,10 +122,8 @@ namespace test3.Areas.Admin.Controllers
 
         private string SaveImageFile(HttpPostedFileBase ImageFile, string currentPhoto="")
         {
-           
             if (ImageFile != null)
             {
-
                 //save new file
                 var fileExtension = Path.GetExtension(ImageFile.FileName);
                 var photoGuid = Guid.NewGuid().ToString();
@@ -145,7 +143,7 @@ namespace test3.Areas.Admin.Controllers
                     System.IO.File.Delete(oldFilePath);
                 }
 
-                return Photo;
+                return $"~/Upload/Services/{Photo}";
             }
             return currentPhoto;
 

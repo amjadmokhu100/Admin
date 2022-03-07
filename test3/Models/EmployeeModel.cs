@@ -9,6 +9,7 @@ using test3.Models;
 namespace test3.Models
 {
 
+
     public partial class EmployeeModel
     {
         [Key]
@@ -16,6 +17,7 @@ namespace test3.Models
         public int Id { get; set; }
         public byte? Employeekind { get; set; }
         public string UsersId { get; set; }
+        public string RoleForEmpl { get; set; }
         public ApplicationUser Users { get; set; }
 
         [Required]

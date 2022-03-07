@@ -40,6 +40,7 @@ namespace test3.Services
             return db.SaveChanges();
         }
 
+
         public bool Delete(int id)
         {
             var service = ReadById(id);

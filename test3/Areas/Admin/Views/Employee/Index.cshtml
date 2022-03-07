@@ -6,6 +6,7 @@
 
 
 
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -35,6 +36,7 @@
                                     <th>Employee Kind</th>
                                     @*<th>User ID</th>*@
                                     <th>Email</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,9 +45,28 @@
                                 <tr>
                                     <td valign="middle" data-header-title="EmployeeID"><span>@employee.Id</span></td>
                                     <td valign="middle" data-header-title="EmployeeKind">@employee.UserName</td>
-                                    <td valign="middle" data-header-title="EmployeeKind">@employee.Employeekind</td>
+                                    <td valign="middle" data-header-title="EmployeeKind">
+                                        @{ if (employee.Employeekind == 1)
+                                            {
+                                                <span>writer</span>
+                                            }
+                                            else if (employee.Employeekind == 2)
+                                            {
+                                                <span>Profreader</span>}
+                                            else
+                                            {
+                                                <span>
+                                                    Admins
+                                                </span>}
+                                        }
+                                        @*@employee.Employeekind*@
+                                    </td>
                                     <td valign="middle" data-header-title="EmployeeEmail">@employee.Email</td>
-
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = employee.Id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = employee.Id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = employee.Id })
+                                    </td>
                                     @*<td valign="middle" data-header-title="UserID">@employee.UserId</td>*@
 
                                     @*<td>@Html.ActionLink("Delete", "DeleteEmployee", new { id = employee.Id })</td>*@
