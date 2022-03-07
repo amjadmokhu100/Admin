@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -10,12 +11,18 @@ using System.Web;
 using System.Web.Mvc;
 using test3;
 using test3.Models;
+using test3.Services;
 
 namespace test3.Areas.Admin.Controllers
 {
+    
     public class EmployeeController : Controller
 
     {
+        private readonly IMapper mapper;
+        private readonly EmployeeService employeeService;
+
+
         public UserManager<ApplicationUser> MyUserManager { get; set; }
         // GET: Employee
         private ApplicationSignInManager _signInManager;
@@ -24,10 +31,12 @@ namespace test3.Areas.Admin.Controllers
         //ApplicationDbContext db2 = new ApplicationDbContext();
         public EmployeeController()
         {
+            mapper = AutoMapperConfig.Mapper;
+            employeeService = new EmployeeService();
+
             db = new ApplicationDbContext();
             MyUserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
         }
-
         public ActionResult Index()
         {
             List<EmployeeModel> EmployeeList = new List<EmployeeModel>();
@@ -45,6 +54,7 @@ namespace test3.Areas.Admin.Controllers
             {
                 EmployeeModel employeeModel = new EmployeeModel()
                 {
+                    Id = db.Employees.First(x=>x.UsersId==item.Id).Id,
                     UsersId = item.Id,
                     UserName = item.UserName,
                     Email = item.Email,
@@ -176,16 +186,44 @@ namespace test3.Areas.Admin.Controllers
 
         //public ActionResult DeleteEmployee(int id)
         //{
-            //    Employee obj = db2.Employees.Find(id);
-            //obj = (from data in myDB.Employees
-            //       where data.EmployeeID == id
-            //       select data).FirstOrDefault();
+        //     Employee obj = db.Employees.Find(id);
+        //    obj = (from data in db.Employees
+        //          where data.Id == id
+        //         select data).FirstOrDefault();
 
-        //    db.Employees.Remove();
-        //    db.SaveChanges();
+        //   db.Employees.Remove();
+        //  db.SaveChanges();
 
         //    return RedirectToAction("Index");
         //}
+
+        public ActionResult Delete(int? Id)
+        {
+            if (Id != null)
+            {
+                var employee = employeeService.ReadById(Id.Value);
+                var employeeInfo = mapper.Map<EmployeeModel>(employee);
+
+                return View(employeeInfo);
+            }
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpPost]
+        public ActionResult DeleteConfirmed(int? Id)
+        {
+            if (Id != null)
+            {
+                var deleted = employeeService.Delete(Id.Value);
+                if (deleted)
+                {
+                    return RedirectToAction("Index");
+                }
+                return RedirectToAction("Delete", new { Id = Id });
+            }
+            return HttpNotFound();
+        }
 
     }
 }

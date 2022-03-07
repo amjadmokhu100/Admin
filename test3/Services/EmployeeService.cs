@@ -1,50 +1,52 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using test3.Data;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using test3.Models;
 
-//namespace test3.Services
-//{
-//    public interface IEmployeeService
-//    {
-//        int Create(Employee employee);
-//        IEnumerable<Employee> ReadAll();
-//    }
-//    public class EmployeeService : IEmployeeService
-//    {
-//        private readonly PaperHelpDbEntities db;
+namespace test3.Services
+{
+    public interface IEmployeeService
+    {
+        bool Delete(int id);
+        Employee ReadById(int id);
 
-//        public EmployeeService()
-//        {
-//            db = new PaperHelpDbEntities();
-//        }
-//        public int Create(Employee employee)
-//        {
-//            var existsEmployee = FindByEmail(employee.AspNetUser.Email);
-//            if (existsEmployee !=null)
-//            {
-//                return -2;
-//            }
-//            db.Employees.Add(employee);
-//            return db.SaveChanges();
-//        }
+    }
+    public class EmployeeService : IEmployeeService
+    {
+        private readonly ApplicationDbContext db;
+        public UserManager<ApplicationUser> MyUserManager { get; set; }
+        public EmployeeService()
+        {
+            db = new ApplicationDbContext();
+            MyUserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+        }
 
-//        public AspNetUser FindByEmail(string email)
-//        {
-//          return  db.AspNetUsers.Where(e => e.Email == email).FirstOrDefault();   
-                
-                
-//        }
+       
 
-//        public IEnumerable<Employee> ReadAll()
-//        {
-//            throw new NotImplementedException();
-//        }
+        public bool Delete(int id)
+        {
+            var employee = ReadById(id);
+            if (employee != null)
+            {
+                string userId = employee.UsersId;
+                db.Employees.Remove(employee);
+                db.SaveChanges();
+                var user = MyUserManager.FindById(userId);
+                MyUserManager.Delete(user);
+                return true;
+            }
+            return false;
+        }
 
-//        public Employee ReadById(int Id)
-//        {
-//            throw new NotImplementedException();
-//        }
-//    }
-//}
+
+        public Employee ReadById(int id)
+        {
+            return db.Employees.Find(id);
+        }
+
+
+    }
+}

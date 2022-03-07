@@ -61,6 +61,13 @@ namespace test3
                 role.Name = "Profreader";
                 roleManager.Create(role);
             }
+            if (!roleManager.RoleExists("Clinet"))
+            {
+                role = new IdentityRole();
+
+                role.Name = "Clinet";
+                roleManager.Create(role);
+            }
         }
 
 
