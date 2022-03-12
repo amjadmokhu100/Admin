@@ -174,8 +174,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -226,12 +228,15 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddOrder.cs" />
+    <Compile Include="Models\ApplicationUsersViewModel.cs" />
     <Compile Include="Models\AssFile.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\myClass.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\ServiceModel.cs" />
@@ -239,6 +244,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\Service_Service.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,6 +258,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\britecharts.min.css" />
     <Content Include="Content\buttons.bootstrap5.css" />
+    <Content Include="Content\ClientPages.css" />
     <Content Include="Content\dataTables.bootstrap5.css" />
     <Content Include="Content\form.css" />
     <Content Include="Content\frappe-gantt.css" />
@@ -323,6 +330,11 @@
     <Content Include="Areas\Admin\Views\Service\Index - Copy.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ApplicationUsers\Index - Copy.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\ClientPage.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap5.js" />
     <Content Include="Scripts\dataTables.checkboxes.min.js" />

@@ -7,6 +7,7 @@ namespace test3.Models
 {
     public class Employee
     {
+
         public int Id { get; set; }
         public Nullable<byte> Employeekind { get; set; }
         public string UsersId { get; set; }

@@ -12,6 +12,7 @@ namespace test3.Services
         int Create(Service newService);
         bool Delete(int id);
 
+
         List<Service> ReadAll();
         Service Get(int Id);
                 Service ReadById(int id);

@@ -12,6 +12,9 @@ namespace test3.Services
     {
         bool Delete(int id);
         Employee ReadById(int id);
+        Employee Get(int Id);
+        int Update(Employee updatedEmployee);
+
 
     }
     public class EmployeeService : IEmployeeService
@@ -25,6 +28,7 @@ namespace test3.Services
         }
 
        
+
 
         public bool Delete(int id)
         {
@@ -47,6 +51,16 @@ namespace test3.Services
             return db.Employees.Find(id);
         }
 
+        public Employee Get(int Id)
+        {
+            return db.Employees.Find(Id);
+        }
 
+        public int Update(Employee updatedEmployee)
+        {
+            db.Employees.Attach(updatedEmployee);
+            db.Entry(updatedEmployee).State = System.Data.Entity.EntityState.Modified;
+            return db.SaveChanges();
+        }
     }
 }

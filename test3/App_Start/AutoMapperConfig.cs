@@ -27,7 +27,7 @@ namespace test3
 
                 cfg.CreateMap<Employee, EmployeeModel>().ReverseMap();
                 cfg.CreateMap<Service, ServiceModel>().ReverseMap();
-
+                cfg.CreateMap<Order, OrderModel>().ReverseMap();
             });
 
             Mapper = config.CreateMapper();

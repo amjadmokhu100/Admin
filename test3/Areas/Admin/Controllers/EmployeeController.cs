@@ -108,7 +108,7 @@ namespace test3.Areas.Admin.Controllers
         [AllowAnonymous]
         public ActionResult Create()
         {
-            ViewBag.Roles = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admins")).ToList(), "Name", "Name");
+            ViewBag.Roles = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admins") && !a.Name.Contains("Clinet")).ToList(), "Name", "Name");
             return View();
         }
 
@@ -197,33 +197,122 @@ namespace test3.Areas.Admin.Controllers
         //    return RedirectToAction("Index");
         //}
 
+      //[HttpGet]
+      //  public ActionResult Edit(int? Id)
+      //  {
+      //      ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
+      //      if (Id == null)
+      //      {
+      //          return HttpNotFound();
+      //      }
+      //      var currentEmployeeData = employeeService.Get(Id.Value);
+
+      //      EmployeeModel employeeModel = new EmployeeModel()
+      //      {
+      //          Id = currentEmployeeData.Id,
+      //          UsersId = currentEmployeeData.UsersId,
+      //          Employeekind = currentEmployeeData.Employeekind,
+      //          Email = currentEmployeeData.Users.Email,
+      //          UserName = currentEmployeeData.Users.UserName
+
+      //      };
+
+      //      return View(employeeModel);
+      //  }
+
+
+        //[HttpPost]
+        //public async Task<ActionResult> Edit(EmployeeModel Emodel)
+        //{
+        //    //ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
+        //    //if (ModelState.IsValid)
+        //    //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        ApplicationUser emp_user = db.Users.Find(Emodel.UsersId);
+        //        emp_user.Email = Emodel.Email;
+        //        emp_user.UserName = Emodel.UserName;
+        //        this.UserManager.AddToRole(emp_user.Id, Emodel.Roles);
+        //        byte epKind;
+        //        if (Emodel.Roles == "Writer")
+        //        {
+        //            epKind = (byte)EmployeeKind.writer;
+        //        }
+        //        else if (Emodel.Roles == "Profreader")
+        //        {
+        //            epKind = (byte)EmployeeKind.Profreader;
+
+
+        //        }
+        //        else
+        //        {
+        //            epKind = (byte)EmployeeKind.Admins;
+        //        }
+
+
+        //        emp_user.Id = Emodel.UsersId;
+        //        var mm = UserManager.Update(emp_user);
+        //        db.SaveChanges();
+
+        //        return RedirectToAction("Index", "Employee");
+        //    }
+        //    ViewBag.Roles = new SelectList(db.Roles.ToList(), "Name", "Name");
+
+        //    //AddErrors(result);
+        //    //  ModelState.AddModelError("error1", Emodel.Errors.First().ToString());
+
+
+        //    // If we got this far, something failed, redisplay form
+
+        //    return View(Emodel);
+
+        //}
+
+
+        //public ActionResult Edit(EmployeeModel data)
+        //{
+
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+
+        //            var employee = mapper.Map<Employee>(data);
+        //            int result = employeeService.Update(employee);
+        //            if (result >= 1)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //            ViewBag.Message = "An error occurred!";
+        //        }
+        //        return View(data);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.Message = ex.Message;
+        //        return View(data);
+        //    }
+
+        //}
+
+
+        // delete
         public ActionResult Delete(int? Id)
         {
             if (Id != null)
             {
                 var employee = employeeService.ReadById(Id.Value);
                 var employeeInfo = mapper.Map<EmployeeModel>(employee);
-
                 return View(employeeInfo);
             }
             return RedirectToAction("Index");
         }
 
-
-        [HttpPost]
-        public ActionResult DeleteConfirmed(int? Id)
-        {
-            if (Id != null)
-            {
-                var deleted = employeeService.Delete(Id.Value);
-                if (deleted)
-                {
-                    return RedirectToAction("Index");
-                }
-                return RedirectToAction("Delete", new { Id = Id });
-            }
-            return HttpNotFound();
-        }
-
     }
 }
+
+
+    
+

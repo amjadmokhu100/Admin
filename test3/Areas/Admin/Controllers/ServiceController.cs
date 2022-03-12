@@ -11,6 +11,7 @@ using test3.Services;
 
 namespace test3.Areas.Admin.Controllers
 {
+
     public class ServiceController : Controller
     {
         private readonly IMapper mapper;
@@ -69,6 +70,7 @@ namespace test3.Areas.Admin.Controllers
             }
 
         }
+
 
 
 
