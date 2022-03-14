@@ -10,14 +10,14 @@
 <br />
 <br />
 
-<link href="~/Content/ClientPages.css" rel="stylesheet" />
+<link href="~/Content/OrderPages.css" rel="stylesheet" />
 <link href="~/Content/tabs.css" rel="stylesheet" />
 
 <div class="tabinator">
     <h1 class="heading" style=" font-family: Helvetica;"> View <span>Orders</span> </h1>
     @*<input type="radio" id="tab1" name="tabs" checked>
     <label for="tab1">All Orders</label>*@
-    <input type="radio" id="tab2" name="tabs">
+    <input type="radio" id="tab2" name="tabs" checked>
     <label for="tab2">Pinding Admin</label>
     <input type="radio" id="tab3" name="tabs">
     <label for="tab3">InProgress</label>
@@ -42,7 +42,7 @@
 
     <div id="content3">
         <p>
-            @*@Html.Partial("inprogress")*@
+            @Html.Partial("inprogress")
         </p>
     </div>
 

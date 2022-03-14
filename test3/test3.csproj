@@ -259,7 +259,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\britecharts.min.css" />
     <Content Include="Content\buttons.bootstrap5.css" />
-    <Content Include="Content\ClientPages.css" />
+    <Content Include="Content\OrderPages.css" />
     <Content Include="Content\tabs.css" />
     <Content Include="Content\dataTables.bootstrap5.css" />
     <Content Include="Content\form.css" />
@@ -339,6 +339,7 @@
     <Content Include="Areas\Admin\Views\Shared\PindingForAdminStatus.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\FinishedStust.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Edit - Copy.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\inprogress.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap5.js" />
     <Content Include="Scripts\dataTables.checkboxes.min.js" />
