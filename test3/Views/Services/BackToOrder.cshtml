@@ -1,0 +1,51 @@
+﻿@using PaperHelp.Models;
+@model Order
+@{
+    ViewBag.Title = "BackToOrder";
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Order</h2>
+
+<section class="portfolio" id="portfolio">
+
+    <h1 class="heading"> <span>Services</span> </h1>
+
+    <div class="box-container">
+
+        @if (Model.Service.Sale == false)
+        {
+            <div class="box">
+                <img src="@Url.Content(Model.Service.Photo)" alt="">
+                <div class="content">
+                    <h3>@Model.Service.Name</h3>
+                    <p>@Model.Service.Description</p>
+
+
+                </div>
+            </div>
+        }
+        else
+        {
+    <div class="box">
+        <span>Sale</span>
+        <img src="@Url.Content(Model.Service.Photo)" alt="">
+        <div class="content">
+            <h3>@Model.Service.Name</h3>
+            <p>@Model.Service.Description</p>
+
+
+
+        </div>
+    </div>
+        }
+    </div>
+
+    @Html.Action("BackToAddOrder_2", new { id = Model.Id })
+
+</section>

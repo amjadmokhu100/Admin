@@ -1,0 +1,165 @@
+﻿@model PaperHelp.Models.Filereview
+
+@{
+    ViewBag.Title = "SendReview";
+
+
+}
+
+
+<br />
+<br />
+<br />
+<br />
+@*<link rel="stylesheet" href="~/css/SendReview.css">*@
+
+
+
+@using (Html.BeginForm("SendReview", "Services", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <!--<-->@*div>
+            <table class="table-condensed">
+                <tr>
+                    <td>
+
+
+                        @Html.LabelFor(model => model.OrderId)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.OrderId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ClientNote)
+
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ClientNote)
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.AssFile)
+                    </td>
+                    <td>
+                        <input type="file" name="UploadFile" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="submit" value="Submit" />
+
+                    </td>
+
+
+                </tr>
+
+
+                <tr>
+                    <td colspan="3">
+                        @ViewBag.Message
+                    </td>
+                </tr>
+
+
+
+            </table>
+
+        </div>*@
+    <!--<-->@*a href="@Url.Action("ClientPageReview","Services",new { id=Model.OrderId })" class="btn" style="text-align:center; width:150px">Review Now</a>*@
+
+
+
+
+    @*<div id="form-main">
+        <div id="form-div">
+            <form class="form" id="form1">
+
+           
+
+
+                <p class="File">
+                    <strong>
+                        @Html.LabelFor(model => model.AssFile)
+                        <input type="file" name="uploadFile" id="uploadFile" />
+                    </strong>
+                </p>
+
+                <p class="text">
+
+                    <strong>
+                        @Html.LabelFor(model => model.ClientNote)
+                        <textarea rows="8" cols="30" name="ClientNote" id="ClientNote" class="form-control"></textarea>
+                    </strong>
+
+                </p>
+
+
+                <div class="submit">
+
+                    <input type="submit" value="Submit" id="button-blue" />
+                    <div class="ease"></div>
+                </div>
+            </form>
+        </div>
+
+    </div>*@
+
+
+
+
+
+    <link href="~/css/Download.css" rel="stylesheet" />
+
+
+                    <div class="container">
+                        <section id="hero">
+                            <div class="hero-text">
+                                <h5>Service Name</h5>
+                                <h1>Upload!</h1>
+                                <br />
+                                <br />
+                                
+                                
+
+
+                                
+                                @Html.LabelFor(model => model.AssFile, new { @class= "forlabel" })
+                                <br />
+                                <input type="file" name="uploadFile" id="uploadFile" style="color:palevioletred" />
+                                <br />
+                                <br />
+                               
+                                @Html.LabelFor(model => model.ClientNote, new { @class = "forlabel" })
+                                <br />
+                                <textarea rows="8" cols="30" name="ClientNote" id="ClientNote" class="form-control" style="color: black; box-shadow: 0px 2px 25px #000;"></textarea>
+
+
+
+
+                               <input type="submit" value="Submit" id="button-blue" />
+
+                            </div>
+                            <div class="hero-image">
+                                @*<img src="~/images/Download-pana.png" />*@
+                                @*<img src="~/images/Download-pana.svg" />*@
+                                <img src="~/images/Loading-pana.png" />
+
+                            </div>
+                        </section>
+                       
+                    </div>
+                    }
+
+
+
+
+
+
+}
+

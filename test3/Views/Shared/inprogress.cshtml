@@ -1,0 +1,55 @@
+﻿@using PaperHelp.Models;
+@model  IEnumerable<Order>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-wrap">
+            <table class="table table-responsive-xl">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>DeadLine</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var o in Model)
+                    {
+
+                        if (o.OrderStatus == 3)
+                        {
+        <tr class="alert" role="alert">
+            <td class="d-flex align-items-center">
+                @*<div class="img" style="background-image:@Url.Content(o.Service.Photo)"></div>*@
+                <div class="pl-3 email">
+                    @*@o.Service.Name*@
+                </div>
+            </td>
+
+            <td>@o.Description</td>
+            <td>@o.Price</td>
+            <td class="status">
+                @{ if (o.OrderStatus == 3)
+                    {
+                                <span class="active">InProgress</span> } }
+            </td>
+            <td>@o.finishedDate</td>
+
+      
+        </tr>}
+
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
