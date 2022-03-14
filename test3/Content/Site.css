@@ -5,7 +5,7 @@
     flex-wrap: wrap;
 }
 
-/* Set padding to keep content from hitting the edges */
+ Set padding to keep content from hitting the edges 
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -13,13 +13,13 @@
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
-*/
-/*.dl-horizontal dt {
-    white-space: normal;
-}*/
 
-/* Set width on the form input elements since they're 100% wide by default */
-/*input,
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+ Set width on the form input elements since they're 100% wide by default 
+input,
 select,
 textarea {
     max-width: 280px;
@@ -27,10 +27,10 @@ textarea {
 
 
 
-section {
+article {
     height: 200px;
     width: 200px;
-    background-color:#c3d3ea !important;
+    background-color: #c3d3ea !important;
     margin: 110px auto 0;
     position: relative;
     /* height of section */
@@ -38,7 +38,7 @@ section {
     border-radius: 12px;
 }
 
-    section:hover {
+    article:hover {
         height: 200px;
     }
 
@@ -48,12 +48,11 @@ section {
     position: absolute;
     left: 30px;
     top: -30px;
-    /* time of circle */
     transition: all 0.5s;
     border-radius: 12px;
 }
 
-section:hover #img1 {
+article:hover #img1 {
     top: -130px;
     border-radius: 50%;
     transform: rotate(720deg);
@@ -65,11 +64,106 @@ section:hover #img1 {
     padding: 10px;
     text-align: center;
     opacity: 0;
-    /* apparance of text */
     transition: all 0.4s;
     font-family: sans-serif;
 }
 
-section:hover #container {
+article:hover #container {
     opacity: 1;
 }
+
+ /*CSS for the main interaction
+
+.tabset > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+}
+
+.tabset .tab-panel {
+    display: none;
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+}*/
+
+
+/* Styling
+
+body {
+    font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+    color: #333;
+    font-weight: 300;
+}*/
+
+/*.tabset > label {
+    position: relative;
+    display: inline-block;
+    padding: 15px 15px 25px;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+    .tabset > label::after {
+        content: "";
+        position: absolute;
+        left: 15px;
+        bottom: 10px;
+        width: 22px;
+        height: 4px;
+        background: #8d8d8d;
+
+
+    }
+
+    .tabset > label:hover,
+    .tabset > input:focus + label {
+        color: #06c;
+    }
+
+        .tabset > label:hover::after,
+        .tabset > input:focus + label::after,
+        .tabset > input:checked + label::after {
+        }
+
+.tabset > input:checked + label {
+    border-color: #ccc;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+}
+
+.tab-panel {
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+}
+
+
+ Demo purposes only
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}*/
+/*
+body {
+    padding: 30px;
+}
+*/
+/*.tabset {
+    max-width: 65em;
+}*/
+
+
+
+
+
+
+

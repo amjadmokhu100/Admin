@@ -176,6 +176,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ApplicationUsersController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployeeController - Copy.cs" />
     <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
@@ -228,11 +229,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AddOrder.cs" />
     <Compile Include="Models\ApplicationUsersViewModel.cs" />
     <Compile Include="Models\AssFile.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\EmployeeModelE.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\myClass.cs" />
@@ -259,6 +260,7 @@
     <Content Include="Content\britecharts.min.css" />
     <Content Include="Content\buttons.bootstrap5.css" />
     <Content Include="Content\ClientPages.css" />
+    <Content Include="Content\tabs.css" />
     <Content Include="Content\dataTables.bootstrap5.css" />
     <Content Include="Content\form.css" />
     <Content Include="Content\frappe-gantt.css" />
@@ -272,6 +274,7 @@
     <Content Include="Content\responsive.bootstrap5.css" />
     <Content Include="Content\select.bootstrap5.css" />
     <Content Include="Content\simplemde.min.css" />
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="Content\throbber.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\dripicons-v2.svg" />
@@ -327,14 +330,15 @@
     <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Service\Index - Copy.cshtml" />
     <Content Include="Areas\Admin\Views\Service\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\ApplicationUsers\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ApplicationUsers\Index - Copy.cshtml" />
-    <Content Include="Areas\Admin\Views\Order\ClientPage.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\AllOrder.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\PindingForAdminStatus.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\FinishedStust.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Edit - Copy.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\dataTables.bootstrap5.js" />
     <Content Include="Scripts\dataTables.checkboxes.min.js" />
