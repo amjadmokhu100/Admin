@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
-using test3.Models;
+using PaperHelp.Models;
 
-namespace test3.Models
+namespace PaperHelp.Models
 {
 
 

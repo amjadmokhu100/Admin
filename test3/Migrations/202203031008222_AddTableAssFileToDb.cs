@@ -1,4 +1,4 @@
-﻿namespace test3.Migrations
+﻿namespace PaperHelp.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

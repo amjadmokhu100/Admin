@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using test3.Models;
+using PaperHelp.Models;
 
-namespace test3
+namespace PaperHelp
 {
     public partial class Startup
     {

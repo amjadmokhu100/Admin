@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using test3.Models;
+using PaperHelp.Models;
 
-namespace test3.Controllers
+namespace PaperHelp.Controllers
 {
     [Authorize]
     public class AccountController : Controller

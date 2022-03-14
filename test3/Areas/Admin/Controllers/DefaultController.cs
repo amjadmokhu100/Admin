@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace test3.Areas.Admin.Controllers
+namespace PaperHelp.Areas.Admin.Controllers
 {
     public class DefaultController : Controller
     {

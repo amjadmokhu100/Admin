@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using test3.Models;
+using PaperHelp.Models;
 
-namespace test3.Services
+namespace PaperHelp.Services
 {
     public interface IAdminService
     {

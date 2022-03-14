@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace test3
+namespace PaperHelp
 {
     public class BundleConfig
     {

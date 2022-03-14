@@ -6,10 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using test3.Models;
-using test3.Services;
+using PaperHelp.Models;
+using PaperHelp.Services;
 
-namespace test3.Areas.Admin.Controllers
+namespace PaperHelp.Areas.Admin.Controllers
 {
 
     public class ServiceController : Controller
@@ -171,6 +171,7 @@ namespace test3.Areas.Admin.Controllers
         {
             if (Id != null)
             {
+
                 var deleted = service_Service.Delete(Id.Value);
                 if (deleted)
                 {

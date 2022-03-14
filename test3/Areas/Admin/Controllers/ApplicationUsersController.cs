@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using test3.Models;
+using PaperHelp.Models;
 
-namespace test3.Areas.Admin.Controllers
+namespace PaperHelp.Areas.Admin.Controllers
 {
     public class ApplicationUsersController : Controller
     {

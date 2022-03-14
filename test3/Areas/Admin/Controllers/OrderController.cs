@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using test3.Models;
-using test3.Orders;
+using PaperHelp.Models;
+using PaperHelp.Orders;
 
-namespace test3.Areas.Admin.Controllers
+namespace PaperHelp.Areas.Admin.Controllers
 {
     public class OrderController : Controller
     {
+
 
         private readonly IMapper mapper;
         private readonly OrderService orderService;
@@ -29,8 +30,20 @@ namespace test3.Areas.Admin.Controllers
             return View(mappedOrderList);
         }
 
-  
 
-     
+        public ActionResult PindingForAdminStatusView(int? Id)
+        {
+
+            if (Id != null)
+            {
+                var order = orderService.ReadById(Id.Value);
+                var orderInfo = mapper.Map<OrderModel>(order);
+
+                return View(orderInfo);
+            }
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

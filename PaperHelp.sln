@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test3", "test3\test3.csproj", "{29EA8476-2212-4E37-825A-710F3EDEEB08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperHelp", "test3\PaperHelp.csproj", "{29EA8476-2212-4E37-825A-710F3EDEEB08}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PaperHelp.DataAccess", "PaperHelp.DataAccess\PaperHelp.DataAccess.csproj", "{709C5894-3DA1-41D8-9AEE-8C72B7564BCE}"
 EndProject

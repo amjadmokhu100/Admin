@@ -2,12 +2,12 @@
 using Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using test3.Models;
+using PaperHelp.Models;
 using System;
 using System.Linq;
 
-[assembly: OwinStartupAttribute(typeof(test3.Startup))]
-namespace test3
+[assembly: OwinStartupAttribute(typeof(PaperHelp.Startup))]
+namespace PaperHelp
 {
     public partial class Startup
     {

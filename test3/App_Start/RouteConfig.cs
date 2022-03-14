@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace test3
+namespace PaperHelp
 {
     public class RouteConfig
     {
@@ -17,7 +17,7 @@ namespace test3
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Default", action = "Index", id = UrlParameter.Optional },
-                new string [] { "test3.Areas.Admin.Controllers" }
+                new string [] { "PaperHelp.Areas.Admin.Controllers" }
             );
         }
     }

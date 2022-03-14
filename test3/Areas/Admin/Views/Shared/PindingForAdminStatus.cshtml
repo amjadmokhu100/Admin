@@ -1,5 +1,5 @@
-﻿@using test3.Models;
-@model IEnumerable<test3.Models.OrderModel>
+﻿@using PaperHelp.Models;
+@model IEnumerable<PaperHelp.Models.OrderModel>
 
 
 
@@ -44,10 +44,10 @@
                                 </td>
                                 <td>@o.finishedDate</td>
 
-                                @*<td>
-                                    <a href="@Url.Action("RequestView", "Services", new {id=o.Id})" class="btn btn-outline-primary"> View</a>
+                                <td>
+                                    <a href="@Url.Action("PindingForAdminStatusView", "Order", new {id=o.Id})" class="btn btn-outline-primary"> View</a>
 
-                                </td>*@
+                                </td>
                             </tr>
 }
 
