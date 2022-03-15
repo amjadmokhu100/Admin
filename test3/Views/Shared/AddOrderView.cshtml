@@ -1,71 +1,66 @@
 ﻿@model PaperHelp.Models.ViewModels.AddOrder
 
-
+@*<link href="~/css/AddOrder.css" rel="stylesheet" />*@
 @using (Html.BeginForm("AddOrder_3", "Services", FormMethod.Post))
 {
-@Html.AntiForgeryToken()
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(x => x.ServiceId)
+        <div class="card11">
+            <div class="formtitle">
+                <h1 class="heading">
+                    <span>Add Order</span>
+                </h1>
+            </div>
+            <div class="card11container">
+
+                <div id="bodycheckbox">
 
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<h1 class="heading"> <span>Add Order</span> </h1>
-<br />
-<br />
-<br />
-@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <label>
+                        Normal
+                        @Html.RadioButtonFor(model => model.IsNormal, "true")
+                    </label>
+                    <br />
+                    <br />
+                    <label>
+                        Fast
+                        @Html.RadioButtonFor(model => model.IsNormal, "fasle")
+                    </label>
+                    <br />
+                    <br />
+                </div>
+                <br />
+                <br />
 
-@Html.HiddenFor(x => x.ServiceId)
+                <label>Quantity of paper :</label>
+                <input type="number" id="qty" name="NoOfPaper" @*placeholder="Qty"*@ value="@Model.NoOfPaper" onclick="add()" />
+                <br />
+                <br />
+                <label>Description :</label>
+                <div class="boxcontainer">
 
-
-<div class="container">
-<ul>
-<li>
-<input type="radio" id="f-option" name="selector">
-<label for="f-option">
-Normal
-@Html.RadioButtonFor(model => model.IsNormal, "true")
-</label>
-<div class="check"></div>
-</li>
-<li>
-<input type="radio" id="s-option" name="selector">
-<label for="s-option">
-Fast
-@Html.RadioButtonFor(model => model.IsNormal, "true")
-</label>
-<div class="check"><div class="inside"></div></div>
-</li>
-
-<li>
-<p>Quantity of paper: </p>
-<div class="quantity">
-
-<input class="input-num-field" type="number" id="qty" name="NoOfPaper" placeholder="enter number of paper.." value="@Model.NoOfPaper" onclick="add()" />
-</div>
-</li>
-<li>
-
-<p>Description</p>
-<textarea class="form-control" id="Description" name="Description" value="@Model.Description" rows="2" cols="20">Write Your Paper's Description .</textarea>
-</li>
-</ul>
-
-<div>
-<label id="price">@Model.Price</label>
-<input type="text" id="num" name="Price" value="@Model.Price" />
-</div>
+                    <textarea class="form-control" id="Description" name="Description" placeholder="Write Your Paper's Description .." value="@Model.Description" rows="2" cols="20"></textarea>
+                    <br />
+                    <br />
 
 
-<button type="submit" class="btn" style="text-align:center; width:150px" id="add" name="total">Total</button>
+                    <div class="rule"></div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn" style="text-align:center; width:150px" id="add" name="total">Total</button>
 
+                    </div>
 
-
-</div>
-
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 <script src="~/lib/jquery/jquery.js"></script>

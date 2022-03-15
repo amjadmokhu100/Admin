@@ -2,67 +2,91 @@
 @model  IEnumerable<Order>
 @{ ViewBag.Title = "Index"; }
 
-
 <br />
 <br />
 <br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
+<link href="~/css/ClientPageProfile.css" rel="stylesheet" />
 <link href="~/css/ClientPages.css" rel="stylesheet" />
 <link href="~/css/Tabs.css" rel="stylesheet" />
-
-<div class="tabinator">
-    <h1 class="heading"> View <span>Orders</span> </h1>
-    <input type="radio" id="tab1" name="tabs" checked>
-    <label for="tab1">Wait for Payment</label>
-    <input type="radio" id="tab2" name="tabs">
-    <label for="tab2">Pinding Admin</label>
-    <input type="radio" id="tab3" name="tabs">
-    <label for="tab3">InProgress</label>
-    <input type="radio" id="tab4" name="tabs">
-    <label for="tab4">Finish</label>
-
-    <input type="radio" id="tab5" name="tabs">
-    <label for="tab5">Review</label>
-
-    <div id="content1">
-        <p>
-            @Html.Partial("WaitingStatus")
-        </p>
+<div class="container" style="margin-bottom:0px">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="content" class="content content-full-width">
+                <!-- begin profile -->
+                <div class="profile22">
+                    <div class="profile22-header">
+                        <!-- BEGIN profile-header-cover -->
+                        <div class="profile22-header-cover"></div>
+                        <!-- END profile-header-cover -->
+                        <!-- BEGIN profile-header-content -->
+                        <div class="profile22-header-content">
+                            <!-- BEGIN profile-header-img -->
+                            <div class="profile22-header-img">
+                                <img src="~/images/ProfilePic.jpg" />
+                            </div>
+                            <!-- END profile-header-img -->
+                            <!-- BEGIN profile-header-info -->
+                            <div class="profile22-header-info">
+                                <h4 class="m-t-10 m-b-5">@ViewBag.profile</h4>
+                                <p class="m-b-10">Welcome to Quick Website </p>
+                                <a href="@Url.Action("Index", "Manage")" class="btn" style="width:130px; background-color:antiquewhite; color:palevioletred">Edit Profile</a>
+                            </div>
+                            <!-- END profile-header-info -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div id="content2">
-        <p>
-            @Html.Partial("PindingForAdminStatus")
-
-        </p>
-    </div>
-
-    <div id="content3">
-        <p>
-            @Html.Partial("inprogress")
-        </p>
-    </div>
-
-    <div id="content4">
-        <p>
-            @Html.Partial("FinishedStust")
-        </p>
-    </div>
-
-
-    <div id="content5">
-        <p>
-            @Html.Partial("ReviewStatus")
-
-        </p>
-    </div>
-
 </div>
+<section class="tabinatorContaier">
+    <div class="tabinator">
+        <h1 class="heading"> My <span>Orders</span> </h1>
+        <input type="radio" id="tab1" name="tabs" checked>
+        <label for="tab1">Wait for Payment</label>
+        <input type="radio" id="tab2" name="tabs">
+        <label for="tab2">Pinding Admin</label>
+        <input type="radio" id="tab3" name="tabs">
+        <label for="tab3">InProgress</label>
+        <input type="radio" id="tab4" name="tabs">
+        <label for="tab4">Finish</label>
 
+        <input type="radio" id="tab5" name="tabs">
+        <label for="tab5">Review</label>
+
+        <div id="content1">
+            <p>
+                @Html.Partial("WaitingStatus")
+            </p>
+        </div>
+
+        <div id="content2">
+            <p>
+                @Html.Partial("PindingForAdminStatus")
+
+            </p>
+        </div>
+
+        <div id="content3">
+            <p>
+                @Html.Partial("inprogress")
+            </p>
+        </div>
+
+        <div id="content4">
+            <p>
+                @Html.Partial("FinishedStust")
+            </p>
+        </div>
+
+
+        <div id="content5">
+            <p>
+                @Html.Partial("ReviewStatus")
+
+            </p>
+        </div>
+
+    </div>
+
+</section>

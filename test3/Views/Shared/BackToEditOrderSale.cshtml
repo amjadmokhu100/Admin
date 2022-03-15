@@ -3,53 +3,47 @@
 
 @using (Html.BeginForm("BackToAddOrder_3", "Services", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <h1 class="heading"> <span>Add Order</span> </h1>
-        <br />
-        <br />
-        <br />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         @Html.HiddenFor(x => x.ServiceId)
-        @Html.HiddenFor(x => x.Id)
+                        @Html.HiddenFor(x => x.Id)
 
-        <div class="box-container">
-
-            <div class="box">
-
-                <img src="~/images/Select.gif" />
-                @*<img src="~/images/OD.png" />*@
-                <div class="content">
-                
-
-                    <div>
-                        <label>Qun</label>
-                        <input type="number" id="qty" name="NoOfPaper" placeholder="Qty" value="@Model.NoOfPaper" onclick="add()" />
+            <div class="form-horizontal">
+                <br />
+                <br />
+                <div class="card11">
+                    <!---Start from here-->
+                    <div class="formtitle">
+                        <h1 class="heading">
+                            <span>Add Order</span>
+                        </h1>
                     </div>
+                    <div class="card11container">
+                        <label>Quantity of paper :</label>
+                        <input type="number" id="qty" name="NoOfPaper" @*placeholder="Qty"*@ value="@Model.NoOfPaper" onclick="add()" />
+                        <br />
+                        <br />
+                        <label>Description :</label>
+                        <div class="boxcontainer">
+
+                            <textarea class="form-control" id="Description" name="Description" placeholder="Write Your Paper's Description .." value="@Model.Description" rows="2" cols="20"></textarea>
+                            <br />
+                            <br />
 
 
-                    <div>
-                        <label>Description</label>
-                        <textarea class="form-control" id="Description" name="Description" value="@Model.Description" rows="2" cols="20">Write Your Paper's Description .</textarea>
+                            <div class="rule"></div>
+                            <div class="form-footer">
+                                <button type="submit" class="btn" style="text-align:center; width:150px" id="add" name="total">Total</button>
 
+                            </div>
+
+                        </div>
                     </div>
-
-
-                    
-
-                    <button type="submit" class="btn" style="text-align:center; width:150px" id="add" name="total">Total</button>
                 </div>
-            </div>
-
-
-        </div>
-    </div>
-}
+            </div>}
+<script src="~/lib/jquery/jquery.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

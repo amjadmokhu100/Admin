@@ -67,6 +67,8 @@ namespace PaperHelp.Controllers
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
+                Email = await UserManager.GetEmailAsync(userId),
+                UserName = User.Identity.GetUserName(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),

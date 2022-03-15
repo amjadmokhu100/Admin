@@ -30,7 +30,8 @@ namespace PaperHelp.Controllers
         {
 
             string userid = User.Identity.GetUserId();
-
+            string username = User.Identity.GetUserName();
+            ViewBag.profile = username;
             var orders = db.Orders.Where(x => x.ClientId == userid).OrderByDescending(x=>x.finishedDate).ToList();
             //var myorder = db.Orders.Find(id);
             return View(orders);

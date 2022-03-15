@@ -1,67 +1,65 @@
 ﻿@*@model PaperHelp.Models.ViewModels.AddOrder*@
 @using PaperHelp.Models
 @model Order
-
+<link href="~/css/AddOrder.css" rel="stylesheet" />
 @using (Html.BeginForm("BackToAddOrder_3", "Services", FormMethod.Post))
 {
-    @Html.AntiForgeryToken()
+@Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <h1 class="heading"> <span>Add Order</span> </h1>
-    <br />
-    <br />
-    <br />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-horizontal">
+                    <br />
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    @Html.HiddenFor(x => x.ServiceId)
-    @Html.HiddenFor(x => x.Id)
-   
-    <div class="box-container">
+                    @Html.HiddenFor(x => x.ServiceId)
+                    @Html.HiddenFor(x => x.Id)
+                    <div class="card11">
+                        <div class="formtitle">
+                            <h1 class="heading">
+                                <span>Add Order</span>
+                            </h1>
+                        </div>
+                        <div class="card11container">
 
-        <div class="box">
+                            <div id="bodycheckbox">
+                                <label>
+                                    Normal
+                                    @Html.RadioButtonFor(model => model.IsNormal, "true")
+                                </label>
+                                <br />
+                                <br />
+                                <label>
+                                    Fast
+                                    @Html.RadioButtonFor(model => model.IsNormal, "fasle")
+                                </label>
+                                <br />
+                                <br />
+                            </div>
+                            <br />
+                            <br />
 
-            <img src="~/images/Select.gif" />
-            @*<img src="~/images/OD.png" />*@
-            <div class="content">
-                <div class="col-md-10">
-                    Normal
-                    @Html.RadioButtonFor(model => model.IsNormal, "true")
-                    Fast
-                    @Html.RadioButtonFor(model => model.IsNormal, "fasle")
-                </div>
+                            <label>Quantity of paper :</label>
+                            <input type="number" id="qty" name="NoOfPaper" @*placeholder="Qty"*@ value="@Model.NoOfPaper" onclick="add()" />
+                            <br />
+                            <br />
+                            <label>Description :</label>
+                            <div class="boxcontainer">
 
-
-                <div>
-                    <label>Qun</label>
-                    <input type="number" id="qty" name="NoOfPaper" placeholder="Qty" value="@Model.NoOfPaper" onclick="add()" />
-                </div>
-
-
-                <div>
-                    <label>Description</label>
-                    <textarea class="form-control" id="Description" name="Description" value="@Model.Description" rows="2" cols="20">Write Your Paper's Description .</textarea>
-
-                </div>
-
-
-                <div>
-                    <label id="price">@Model.Price</label>
-                    <input type="text" id="num" name="Price" value="@Model.Price" />
-                </div>
+                                <textarea class="form-control" id="Description" name="Description" placeholder="Write Your Paper's Description .." value="@Model.Description" rows="2" cols="20"></textarea>
+                                <br />
+                                <br />
 
 
-                <button type="submit" class="btn" style="text-align:center; width:150px" id="add" name="total">Total</button>
-            </div>
-        </div>
+                                <div class="rule"></div>
+                                <div class="form-footer">
+                                    <button type="submit" class="btn" style="text-align:center; width:150px" id="add" name="total">Total</button>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>}
 
-    </div>
-</div>
-}
-
+<script src="~/lib/jquery/jquery.js"></script>
+<script src="~/lib/jquery-validate/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

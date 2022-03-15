@@ -285,9 +285,12 @@
     <Content Include="Content\StyleSheet1.css" />
     <Content Include="Content\throbber.gif" />
     <Content Include="css\AddOrder.css" />
+    <Content Include="css\ClientPageProfile.css" />
     <Content Include="css\ClientPages.css" />
     <Content Include="css\Download.css" />
+    <Content Include="css\Login.css" />
     <Content Include="css\pop up.css" />
+    <Content Include="css\Profile.css" />
     <Content Include="css\SendReview.css" />
     <Content Include="css\style.css" />
     <Content Include="css\StyleSheetPayment.css" />
@@ -321,6 +324,7 @@
     <Content Include="Images\port-img4.jpg" />
     <Content Include="Images\port-img5.jpg" />
     <Content Include="Images\port-img6.jpg" />
+    <Content Include="Images\ProfilePic.jpg" />
     <Content Include="Images\rocket.svg" />
     <Content Include="Images\s-1.png" />
     <Content Include="Images\s-2.png" />
@@ -330,6 +334,8 @@
     <Content Include="Images\s-6.png" />
     <Content Include="Images\search.jpg" />
     <Content Include="Images\Select.gif" />
+    <Content Include="Images\signin-image.jpg" />
+    <Content Include="Images\signup-image.jpg" />
     <Content Include="Images\Site Stats.gif" />
     <Content Include="Images\us.jpg" />
     <Content Include="js\AddOrder.js" />

@@ -1,0 +1,12 @@
+﻿body {
+   font-size: 15px;
+
+}
+.row{
+    width:400px;
+    height:300px;
+    padding:35px ;
+    margin:100px auto;
+    border-radius: 25px;
+    background-color: rgba(0,0,0,0.1);
+}
