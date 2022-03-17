@@ -18,7 +18,7 @@
 
     <div class="box-container">
 
-        @if (Model.Service.Sale == false)
+        @if (ViewBag.sale == false)
         {
             <div class="box">
                 <img src="@Url.Content(Model.Service.Photo)" alt="">

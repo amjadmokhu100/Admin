@@ -234,21 +234,19 @@ namespace PaperHelp.Controllers
         {
            
             var myorder = db.Orders.Find(id);
-            //db.Orders.Remove(myorder);
-            //db.SaveChanges();
-
+            var s = db.Services.Find(myorder.ServiceId);
+            ViewBag.sale = s.Sale;
             return View(myorder);
 
         }
 
         public PartialViewResult BackToAddOrder_2(int id)
         {
-            //PaperHelp.Models.Order order = new Models.Order() { ServiceId = id };
-
-            //AddOrder a = new AddOrder() { Id = id };
-            //Order a = new Order() { ID = id };
+           
 
             var a = db.Orders.Find(id);
+            var s = db.Services.Find(a.ServiceId);
+            ViewBag.sale = s.Sale;
             if (a.Service.Sale == true)
             {
                 return PartialView("BackToEditOrderSale", a);
@@ -347,6 +345,9 @@ namespace PaperHelp.Controllers
         public ActionResult RequestView(int id)
         {
             var myorder = db.Orders.Find(id);
+            var s = db.Services.Find(myorder.ServiceId);
+            string ServiceN = s.Name;
+            ViewBag.SN = ServiceN;
             
             string[] filepath = Directory.GetFiles(Server.MapPath("~/Files/"));
             List<FileModel> files = new List<FileModel>() ;
@@ -416,6 +417,9 @@ namespace PaperHelp.Controllers
                 o.ClientNote = obj.ClientNote;
                 o.OrderStatus = (byte)OrderStatus.Reviewing;
                 //db.Orders.Add(note);
+                //var s = db.Services.Find(o.ServiceId);
+                //string ServiceN = s.Name;
+                //ViewBag.SN = ServiceN;
                 db.SaveChanges();
 
 

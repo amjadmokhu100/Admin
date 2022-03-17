@@ -527,7 +527,6 @@
     <Content Include="Areas\Admin\Views\Employee\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\ApplicationUsers\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\AllOrder.cshtml" />
     <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\PindingForAdminStatus.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\FinishedStust.cshtml" />

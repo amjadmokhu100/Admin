@@ -13,7 +13,7 @@ button:hover{
 }
 body {
     padding: 50px;
-    background: #F3F2F1;
+    background: #ffffff;
 }
 .container{
     width: 1440px;
@@ -75,13 +75,12 @@ nav ul li:last-child a{
         font-family: 'Montserrat', Arial, Helvetica, sans-serif;
         float: right;
         width: 25%;
-        height:40px;
+        height: 40px;
         border: #fbfbfb solid 4px;
         cursor: pointer;
         background-color: #f78d8d;
-        border-radius:8px;
-        
-        color: white;
+        border-radius: 8px;
+        color:#655b5b;
         font-size: 18px;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -130,16 +129,25 @@ nav ul li:last-child a{
         line-height: 2;
         color: var(--black);
     }
-    #hero .btn2 {
-        position: relative;
-        padding: 10px 35px;
-        border: none;
-        /*;
+#hero a {
+    color: #655b5b;
+    font-size: 18px;
+    font-weight:bold;
+}
+#hero a:hover{
+    color:white;
+}
+#hero .btn2 {
+    position: relative;
+    padding: 10px 35px;
+    border: none;
+    color: #655b5b;
+    /*;
     border-radius: 30px; */
-        background: none;
-        font-size: 1.5em;
-        transition: all .5s /*ease-in-out*/;
-    }
+    background: none;
+    font-size: 18px;
+    transition: all .5s /*ease-in-out*/;
+}
 
         #hero .btn2::before {
             content: '';
@@ -161,28 +169,30 @@ nav ul li:last-child a{
             color: #fff;
         }
 
-#hero button{
+#hero button {
     position: relative;
-    padding: 10px 35px;
+    padding: 10px 25px;
     border: none;
+    color: #655b5b;
     /*;
     border-radius: 30px; */
     background: none;
-    font-size: 1.5em;
+    font-size: 1.7em;
     transition: all .5s ease-in-out;
 }
-#hero button::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #f69696;
-    width: 30%;
-    height: 100%;
-    border-radius: 3px;
-    z-index: -1;
-    transition: all .5s ease-in-out;
-}
+    #hero button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #f69696;
+        color: #655b5b;
+        width: 30%;
+        height: 100%;
+        border-radius: 3px;
+        z-index: -1;
+        transition: all .5s ease-in-out;
+    }
 #hero button:hover::before{
     width: 100%;
 }

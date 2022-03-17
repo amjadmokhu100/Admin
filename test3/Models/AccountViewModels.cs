@@ -49,7 +49,7 @@ namespace PaperHelp.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email or UserName")]
+        [Display(Name = " UserName")]
         public string UserName { get; set; }
 
         [Required]

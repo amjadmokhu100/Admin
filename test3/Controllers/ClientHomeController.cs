@@ -28,11 +28,20 @@ namespace PaperHelp.Controllers
 
         public ActionResult Index()
         {
-
+       
             string userid = User.Identity.GetUserId();
             string username = User.Identity.GetUserName();
             ViewBag.profile = username;
             var orders = db.Orders.Where(x => x.ClientId == userid).OrderByDescending(x=>x.finishedDate).ToList();
+
+            foreach (var item in orders)
+            {
+                var s = db.Services.Find(item.ServiceId);
+                var serviceName = s.Name;
+                ViewBag.SName = serviceName;
+
+            }
+            //ViewBag.s = db.Services.ToList();
             //var myorder = db.Orders.Find(id);
             return View(orders);
 
